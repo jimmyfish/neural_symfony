@@ -1,8 +1,3 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
-
 dashboard:
     prefix: dashboard
-    name_prefix: dashboard_
     resource: "routes/dashboard/routes.yaml"

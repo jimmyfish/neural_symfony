@@ -22,6 +22,7 @@ App\Entity\User:
             type: string
             length: 255
             nullable: false
+            unique: true
         email:
             type: string
             length: 255

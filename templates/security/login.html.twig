@@ -1,42 +1,68 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Log in!{% endblock %}
-
-{% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+{% extends 'layouts/auth.html.twig' %}
+{% block content %}
+    <div class="login-wrapper ">
+        <div class="bg-pic">
+            <img src="{{ asset('img/login-bg.jpg') }}"
+                 data-src="{{ asset('img/login-bg.jpg') }}"
+                 data-src-retina="{{ asset('img/login-bg.jpg') }}" alt=""
+                 class="lazy">
+            <div class="bg-caption pull-bottom sm-pull-bottom text-white p-l-20 m-b-20">
+                <h2 class="semi-bold text-white">
+                    Pages make it easy to enjoy what matters the most in the life</h2>
+                <p class="small">
+                    images Displayed are solely for representation purposes only, All work copyright of respective owner,
+                    otherwise © 2013-2014 REVOX.
+                </p>
+            </div>
         </div>
-    {% endif %}
+        <div class="login-container bg-white">
+            <div class="p-l-50 m-l-20 p-r-50 m-r-20 p-t-50 m-t-30 sm-p-l-15 sm-p-r-15 sm-p-t-40">
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputUsername">Username</label>
-    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" required>
-
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
-
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
+                {% if app.user %}
+                    <div class="mb-3">
+                        You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                    </div>
+                {% else %}
+                    <p class="p-t-35">Sign into your pages account</p>
+                    <form method="post" id="form-login" class="p-t-15" role="form">
+                        <div class="form-group form-group-default">
+                            <label for="username">Login</label>
+                            <div class="controls">
+                                <input type="text" id="username" name="username" placeholder="User Name"
+                                       class="form-control" value="{{ last_username }}" required>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-default">
+                            <label for="password">Password</label>
+                            <div class="controls">
+                                <input type="password" class="form-control" id="password" name="password"
+                                       placeholder="Credentials"
+                                       required>
+                            </div>
+                        </div>
+                        <input type="hidden" name="_csrf_token"
+                               value="{{ csrf_token('authenticate') }}"
+                        >
+                        <button class="btn btn-primary btn-cons m-t-10" type="submit">Sign in</button>
+                    </form>
+                {% endif %}
+                <div class="pull-bottom sm-pull-bottom">
+                    <div class="m-b-30 p-r-80 sm-m-t-20 sm-p-r-15 sm-p-b-20 clearfix">
+                        <div class="col-sm-9 no-padding m-t-10">
+                            <p>
+                                <small>
+                                    Create a pages account. If you have a facebook account, log into it for this
+                                    process. Sign in with <a href="#" class="text-info">Facebook</a> or <a href="#"
+                                                                                                           class="text-info">Google</a>
+                                </small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    #}
-
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
+    </div>
 {% endblock %}

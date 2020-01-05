@@ -26,6 +26,8 @@
           media="screen"/>
     <link href="{{ asset('pages/css/pages-icons.css') }}" rel="stylesheet" type="text/css">
     <link class="main-stylesheet" href="{{ asset('pages/css/themes/light.css') }}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    {% block customStyle %}{% endblock %}
 </head>
 <body class="fixed-header menu-pin">
 <nav class="page-sidebar" data-pages="sidebar">
@@ -66,7 +68,7 @@
                     <a href="#" class="dropdown-item"><i class="pg-settings_small"></i> Settings</a>
                     <a href="#" class="dropdown-item"><i class="pg-outdent"></i> Feedback</a>
                     <a href="#" class="dropdown-item"><i class="pg-signals"></i> Help</a>
-                    <a href="#" class="clearfix bg-master-lighter dropdown-item">
+                    <a href="{{ url('app_logout') }}" class="clearfix bg-master-lighter dropdown-item">
                         <span class="pull-left">Logout</span>
                         <span class="pull-right"><i class="pg-power"></i></span>
                     </a>
@@ -457,5 +459,7 @@
 <script src="{{ asset('plugins/switchery/js/switchery.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('pages/js/pages.js') }}"></script>
 <script src="{{ asset('js/scripts.js') }}" type="text/javascript"></script>
+
+{% block customJS %}{% endblock %}
 </body>
 </html>

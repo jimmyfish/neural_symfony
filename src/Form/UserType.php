@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\User;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
@@ -27,7 +28,7 @@ class UserType extends AbstractType
                     'Male' => 0,
                     'Female' => 1
                 ]
-            ])->add('Submit', SubmitType::class)
+            ])->add('submit', SubmitType::class)
         ;
     }
 
